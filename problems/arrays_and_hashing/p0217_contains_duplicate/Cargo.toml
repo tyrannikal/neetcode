@@ -1,0 +1,4 @@
+[package]
+name = "p0217_contains_duplicate"
+version = "0.1.0"
+edition = "2021"
