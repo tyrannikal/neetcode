@@ -9,9 +9,15 @@
 //
 // Key Insight:
 
-#[allow(unused)]
 fn contains_duplicate(nums: Vec<i32>) -> bool {
-    todo!()
+    let mut sorted_nums = nums;
+    sorted_nums.sort();
+    for i in 1..sorted_nums.len() {
+        if sorted_nums[i] == sorted_nums[i - 1] {
+            return true;
+        }
+    }
+    false
 }
 
 fn main() {
@@ -23,25 +29,21 @@ mod tests {
     use super::*;
 
     #[test]
-    #[ignore]
     fn test_has_duplicate() {
         assert!(contains_duplicate(vec![1, 2, 3, 1]));
     }
 
     #[test]
-    #[ignore]
     fn test_no_duplicate() {
         assert!(!contains_duplicate(vec![1, 2, 3, 4]));
     }
 
     #[test]
-    #[ignore]
     fn test_empty() {
         assert!(!contains_duplicate(vec![]));
     }
 
     #[test]
-    #[ignore]
     fn test_single() {
         assert!(!contains_duplicate(vec![1]));
     }
