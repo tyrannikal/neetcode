@@ -3,17 +3,20 @@
 // Difficulty: Easy
 // Link: https://leetcode.com/problems/contains-duplicate/
 //
-// Pattern:
-// Time Complexity:
-// Space Complexity:
+// Pattern: HashSet for O(1) lookup
+// Time Complexity: O(n) — single pass, short-circuits on first duplicate
+// Space Complexity: O(n) — HashSet stores up to n elements
 //
-// Key Insight:
+// Key Insight: HashSet::insert returns false if the value already exists,
+// doubling as both insertion and duplicate check in one call.
+// Alternative: sort + scan is O(n log n)/O(1) if space matters more than time.
+
+use std::collections::HashSet;
 
 fn contains_duplicate(nums: Vec<i32>) -> bool {
-    let mut sorted_nums = nums;
-    sorted_nums.sort();
-    for i in 1..sorted_nums.len() {
-        if sorted_nums[i] == sorted_nums[i - 1] {
+    let mut nums_set = HashSet::new();
+    for num in nums {
+        if !nums_set.insert(num) {
             return true;
         }
     }
